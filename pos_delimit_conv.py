@@ -14,21 +14,16 @@ ins_pos=[1,2,3,7,11,12,16,20,21,22,23,24,25,34,35,38,42,51,66,74,85,96,101,112,1
 #ins_pos = [int(f) for f in input().strip().split(',') ]
 
 #Logic to insert at position
-def abc():
-  for i in range(0,len(ins_pos)):
-    ins_pos[i]+=i
-  return ins_pos 
-abc()
+ins_pos=[ins_pos[i]+i for i in range(0,len(ins_pos))]
 
 #Reading line by line and appending delimiter at given position and finally writing to file
 line_num=-1
 for line in lines:
     ele=[]
-    line_num+=1    
-    for i in line:
-      ele.append(i)
+    line_num+=1 
+    ele[:0]=lines[line_num] #or ele=[i for i in line ]#30.46
     for c in ins_pos: 
-      ele.insert(c,'|') 
+      ele[c:c]=['|'] # change delimiter if required from | to any as required
     final1="".join([str(st) for st in ele])
     #lines[line_num]=final1  --uncomment if u want to store final data to list for nxt operations
     with open(outpath,'a+') as file:
